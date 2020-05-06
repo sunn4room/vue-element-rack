@@ -12,7 +12,7 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 const routes = [];
-const viewModules = require.context("./views", true, /\.vue$/);
+const viewModules = require.context("./router", true, /\.vue$/);
 
 function addRoute(fullpath, viewModule) {
   let cut = fullpath.split("/");
@@ -58,14 +58,13 @@ viewModuleKeys
 const router = new VueRouter({
   mode: "history",
   routes,
-});
+})
 
 // ----------------vuex----------------
 import Vuex from "vuex";
 Vue.use(Vuex);
 
 import storeObj from "./store"
-storeObj.modules = {};
 const storeModules = require.context("./store", true, /\.js$/);
 
 function addStore(fullpath, storeModule) {
@@ -84,7 +83,6 @@ storeModuleKeys
   .forEach((key) => {
     addStore(key.substring(2, key.length - 9), storeModules(key));
   });
-console.log("---")
 storeModuleKeys
   .filter((key) => !(/\/index\.js$/.test(key)))
   .forEach((key) => {
@@ -93,11 +91,12 @@ storeModuleKeys
 const store = new Vuex.Store(storeObj);
 
 // ----------------views---------------
-import views from "./views";
+import App from "./router";
+import "./css/main.css"
 
 // ------------------------------------
 new Vue({
   router,
   store,
-  render: (h) => h(views),
+  render: (h) => h(App),
 }).$mount("#app");

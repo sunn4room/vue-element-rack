@@ -13,7 +13,8 @@ export default {
   },
   methods: {
     onClick() {
-      this.$router.push("/home")
+      console.log("click1")
+      console.log("click2")
     }
   }
 }

@@ -22,6 +22,10 @@ export default {
   }),
   components: scanResult.components,
 }
+
+export let route = {
+  redirect: "/home"
+}
 </script>
 
 <style>

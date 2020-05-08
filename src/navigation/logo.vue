@@ -14,7 +14,6 @@ export default {
   methods: {
     onClick() {
       console.log("click1")
-      console.log("click2")
     }
   }
 }
